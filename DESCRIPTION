@@ -1,0 +1,25 @@
+Package: quantrines
+Title: Examples of quantile regression engines
+Version: 0.0.1
+Authors@R: 
+    person("Daniel", "McDonald", , "daniel@stat.ubc.ca", role = c("aut", "cre"))
+Description: Provides a few quantile regression engines for use with a
+    feature branch of the parsnip package.
+License: MIT + file LICENSE
+Depends: 
+    parsnip
+Imports: 
+    checkmate,
+    cli,
+    rlang,
+    stats,
+    tibble,
+    vctrs
+Suggests:
+    grf,
+    quantreg
+Remotes:
+    dajmcdon/parsnip@quantile-mode
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
