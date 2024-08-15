@@ -4,6 +4,8 @@
 # quantrines
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/dajmcdon/quantrines/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dajmcdon/quantrines/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `{quantrines}` (a portmanteau of “quantiles” and “engines”,
@@ -13,8 +15,13 @@ demonstrate the `{parsnip}` “quantile regression” mode.
 This currently contains 2 engines:
 
 - `grf`: allows for quantile regression as well as regression and
-  classification using random forests; and
-- `quantreg`: allows for quantile regression.
+  classification using random forests (see `?grf-engine`); and
+- `quantreg`: allows for quantile regression (see `?quantreg-engine`).
+
+Other functions contained here: \* `vec_quantiles()` to create a
+list-col of quantile values with an attribute for the levels. \*
+`weighted_interval_score()` computes the score for quantile predictions
+relative to observed values.
 
 ## Installation
 

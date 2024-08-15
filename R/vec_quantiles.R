@@ -65,9 +65,16 @@ vec_quantiles <- function(values, quantile_levels = NULL) {
 
 #' @export
 format.vctrs_quantiles <- function(x, ...) {
-  rng <- sapply(x, range)
-  out <- paste0("[", round(rng[1, ], 3L), ", ", round(rng[2, ], 3L), "]")
-  out[is.na(rng[1, ]) | is.na(rng[2, ])] <- NA
+  quantile_levels <- attr(x, "levels")
+  if (length(quantile_levels) == 1L) {
+    x <- unlist(x)
+    out <- paste0(round(quantile_levels, 2L), ": ", round(unlist(x)))
+    out[is.na(x)] <- NA
+  } else {
+    rng <- sapply(x, range)
+    out <- paste0("[", round(rng[1, ], 3L), ", ", round(rng[2, ], 3L), "]")
+    out[is.na(rng[1, ]) | is.na(rng[2, ])] <- NA
+  }
   out
 }
 
@@ -76,5 +83,3 @@ obj_print_footer.vctrs_quantiles <- function(x, ...) {
   lvls <- attr(x, "levels")
   cat("# Qntl levels: ", format(lvls, digits = 3), "\n", sep = " ")
 }
-
-

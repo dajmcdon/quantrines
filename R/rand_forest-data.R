@@ -180,6 +180,20 @@ make_grf_classification <- function() {
     model = "rand_forest", eng = "grf", pkg = "quantrines",
     mode = "classification"
   )
+  parsnip::set_encoding(
+    model = "rand_forest",
+    eng = "grf",
+    mode = "classification",
+    options = list(
+      # one hot is the closest to typical factor handling in randomForest
+      # (1 vs all splitting), though since we aren't bagging,
+      # factors with many levels could be visited frequently
+      predictor_indicators = "one_hot",
+      compute_intercept = FALSE,
+      remove_intercept = FALSE,
+      allow_sparse_x = FALSE
+    )
+  )
   parsnip::set_fit(
     model = "rand_forest",
     eng = "grf",
@@ -204,7 +218,6 @@ make_grf_classification <- function() {
       pre = NULL,
       post = process_probability_forest_class,
       func = c(fun = "predict"),
-      # map between parsnip::predict args and grf::quantile_forest args
       object = quote(object$fit),
       newdata = quote(new_data)
     )
